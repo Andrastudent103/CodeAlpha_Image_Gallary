@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="gallery-header">
+    <div class="header-content">
+        <div class="title-section">
+            <h1 class="gallery-title">
+                <span class="title-icon">📸</span>
+                Image Gallery
+                <span class="title-subtitle">Discover Amazing Moments</span>
+            </h1>
+        </div>
+        
+        <div class="header-controls">
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search images..." id="searchInput">
+                <button class="search-btn">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- View Toggle -->
+            <div class="view-toggle">
+                <button class="view-btn active" data-view="grid" title="Grid View">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z"/>
+                    </svg>
+                </button>
+                <button class="view-btn" data-view="list" title="List View">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/>
+                    </svg>
+                </button>
+                <button class="view-btn" data-view="masonry" title="Masonry View">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M3 3h8v6H3V3zm10 0h8v4h-8V3zM3 11h8v10H3V11zm10-4h8v6h-8V7zm0 8h8v6h-8v-6z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Sort Dropdown -->
+            <div class="sort-dropdown">
+                <select class="sort-select" id="sortSelect">
+                    <option value="default">Sort by Default</option>
+                    <option value="name-asc">Name A-Z</option>
+                    <option value="name-desc">Name Z-A</option>
+                    <option value="date-newest">Newest First</option>
+                    <option value="date-oldest">Oldest First</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Enhanced Filter Section -->
+    <div class="filter-section">
+        <div class="filter-wrapper">
+            <!-- Category Filters -->
+            <div class="category-filters">
+                <h3 class="filter-label">Categories</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <span class="btn-icon">🌟</span>
+                        <span class="btn-text">All</span>
+                        <span class="btn-count">24</span>
+                    </button>
+                    <button class="filter-btn" data-filter="nature">
+                        <span class="btn-icon">🌿</span>
+                        <span class="btn-text">Nature</span>
+                        <span class="btn-count">8</span>
+                    </button>
+                    <button class="filter-btn" data-filter="city">
+                        <span class="btn-icon">🏙️</span>
+                        <span class="btn-text">City</span>
+                        <span class="btn-count">6</span>
+                    </button>
+                    <button class="filter-btn" data-filter="people">
+                        <span class="btn-icon">👥</span>
+                        <span class="btn-text">People</span>
+                        <span class="btn-count">5</span>
+                    </button>
+                    <button class="filter-btn" data-filter="animals">
+                        <span class="btn-icon">🐾</span>
+                        <span class="btn-text">Animals</span>
+                        <span class="btn-count">5</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Color Filters -->
+            <div class="color-filters">
+                <h3 class="filter-label">Colors</h3>
+                <div class="color-buttons">
+                    <button class="color-btn active" data-color="all">
+                        <span class="color-swatch all-colors"></span>
+                        All
+                    </button>
+                    <button class="color-btn" data-color="warm">
+                        <span class="color-swatch warm"></span>
+                        Warm
+                    </button>
+                    <button class="color-btn" data-color="cool">
+                        <span class="color-swatch cool"></span>
+                        Cool
+                    </button>
+                    <button class="color-btn" data-color="monochrome">
+                        <span class="color-swatch mono"></span>
+                        B&W
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button class="action-btn" id="randomizeBtn" title="Randomize Gallery">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M10.59 9.17L5.41 4 4 5.41l5.17 5.17 1.42-1.41zM14.5 4l2.04 2.04L4 18.59 5.41 20 17.96 7.46 20 9.5V4h-5.5zm.33 9.41l-1.41 1.41 3.13 3.13L14.5 20H20v-5.5l-2.04 2.04-3.13-3.13z"/>
+                    </svg>
+                    Shuffle
+                </button>
+                <button class="action-btn" id="resetBtn" title="Reset Filters">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                    </svg>
+                    Reset
+                </button>
+                <button class="action-btn" id="fullscreenBtn" title="Fullscreen Mode">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                    </svg>
+                    Fullscreen
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Filter Toggle -->
+        <button class="mobile-filter-toggle" id="mobileFilterToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="toggle-text">Filters</span>
+        </button>
+    </div>
+    
+    <!-- Results Info -->
+    <div class="results-info">
+        <span class="results-count" id="resultsCount">Showing 24 images</span>
+        <div class="results-actions">
+            <button class="results-btn" id="selectAllBtn">Select All</button>
+            <button class="results-btn" id="downloadSelectedBtn" disabled>Download Selected</button>
+        </div>
+    </div>
+</header>
+
+
+    <main class="gallery-container">
+        <div class="gallery-grid">
+            <div class="gallery-item" data-category="nature">
+                <img src="https://picsum.photos/400/300?random=1" alt="Nature 1">
+                <div class="overlay">
+                    <h3>Beautiful Landscape</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="city">
+                <img src="https://picsum.photos/400/300?random=2" alt="City 1">
+                <div class="overlay">
+                    <h3>Urban View</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="people">
+                <img src="https://picsum.photos/400/300?random=3" alt="People 1">
+                <div class="overlay">
+                    <h3>Portrait</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="nature">
+                <img src="https://picsum.photos/400/300?random=4" alt="Nature 2">
+                <div class="overlay">
+                    <h3>Mountain View</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="animals">
+                <img src="https://picsum.photos/400/300?random=5" alt="Animals 1">
+                <div class="overlay">
+                    <h3>Wildlife</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="city">
+                <img src="https://picsum.photos/400/300?random=6" alt="City 2">
+                <div class="overlay">
+                    <h3>City Lights</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="nature">
+                <img src="https://picsum.photos/400/300?random=7" alt="Nature 3">
+                <div class="overlay">
+                    <h3>Forest Path</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="people">
+                <img src="https://picsum.photos/400/300?random=8" alt="People 2">
+                <div class="overlay">
+                    <h3>Street Photography</h3>
+                </div>
+            </div>
+            <div class="gallery-item" data-category="animals">
+                <img src="https://picsum.photos/400/300?random=9" alt="Animals 2">
+                <div class="overlay">
+                    <h3>Ocean Life</h3>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <div class="lightbox-content">
+            <button class="nav-btn prev-btn">&#10094;</button>
+            <img id="lightbox-img" src="" alt="">
+            <button class="nav-btn next-btn">&#10095;</button>
+        </div>
+        <div class="lightbox-caption">
+            <h3 id="lightbox-title"></h3>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
